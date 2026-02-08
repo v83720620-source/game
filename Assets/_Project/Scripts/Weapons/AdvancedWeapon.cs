@@ -102,11 +102,8 @@ public class AdvancedWeapon : MonoBehaviour
     
     private void HandleInput()
     {
-        // OLD INPUT DISABLED - Using Mobile UI buttons
-        // Fire button handled by MobileInputManager → FireButton
-        // Reload button handled by MobileInputManager → ReloadButton
-        
-        /* KEYBOARD/MOUSE INPUT DISABLED FOR ANDROID
+#if UNITY_EDITOR || UNITY_STANDALONE
+        // PC/Editor Input (Mouse/Keyboard)
         // Fire input
         bool fireInput = _weaponData.isAutomatic ? Input.GetMouseButton(0) : Input.GetMouseButtonDown(0);
         
@@ -120,7 +117,9 @@ public class AdvancedWeapon : MonoBehaviour
         {
             TryReload();
         }
-        */
+#else
+        // Mobile Input handled by MobileInputManager buttons
+#endif
     }
     
     private void UpdateSpread()

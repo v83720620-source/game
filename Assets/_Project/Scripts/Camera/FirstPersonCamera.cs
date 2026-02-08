@@ -54,10 +54,8 @@ public class FirstPersonCamera : MonoBehaviour
     
     private void HandleInput()
     {
-        // OLD INPUT DISABLED - Using Touch input for mobile
-        // Camera rotation handled by touch drag on screen
-        
-        /* MOUSE INPUT DISABLED FOR ANDROID
+#if UNITY_EDITOR || UNITY_STANDALONE
+        // PC/Editor Input (Mouse)
         // Get mouse input
         _lookInput = new Vector2(
             Input.GetAxisRaw("Mouse X"),
@@ -69,7 +67,9 @@ public class FirstPersonCamera : MonoBehaviour
         {
             ToggleCursorLock();
         }
-        */
+#else
+        // Mobile Input - Touch drag handled elsewhere
+#endif
     }
     
     private void ApplyRotation()

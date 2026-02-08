@@ -60,16 +60,16 @@ public class SimpleWeapon : MonoBehaviour
     
     private void HandleInput()
     {
-        // OLD INPUT DISABLED - Using Mobile UI buttons
-        // Fire button handled by MobileInputManager
-        
-        /* MOUSE INPUT DISABLED FOR ANDROID
+#if UNITY_EDITOR || UNITY_STANDALONE
+        // PC/Editor Input (Mouse)
         // Left mouse button
         if (Input.GetMouseButton(0))
         {
             TryFire();
         }
-        */
+#else
+        // Mobile Input handled by MobileInputManager
+#endif
     }
     
     /// <summary>

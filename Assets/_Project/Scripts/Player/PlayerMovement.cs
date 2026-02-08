@@ -61,10 +61,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void HandleInput()
     {
-        // OLD INPUT DISABLED - Using New Input System (Mobile UI) only
-        // Mobile input is handled by MobileInputManager
-        
-        /* KEYBOARD INPUT DISABLED FOR ANDROID
+#if UNITY_EDITOR || UNITY_STANDALONE
+        // PC/Editor Input (Keyboard)
         // WASD movement
         _moveInput = new Vector2(
             Input.GetAxisRaw("Horizontal"),
@@ -85,7 +83,10 @@ public class PlayerMovement : MonoBehaviour
         {
             _crouchInput = !_crouchInput;
         }
-        */
+#else
+        // Mobile Input handled by MobileInputManager
+        // No keyboard input on mobile
+#endif
     }
     
     private void CheckGround()
