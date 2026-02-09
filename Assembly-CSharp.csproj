@@ -70,18 +70,26 @@
     <Compile Include="Assets\_Project\Scripts\Combat\HitBox.cs" />
     <Compile Include="Assets\_Project\Scripts\AI\BotVision.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\VirtualJoystick.cs" />
+    <Compile Include="Assets\_Project\Scripts\Networking\CustomNetworkManager.cs" />
+    <Compile Include="Assets\_Project\Scripts\UI\Lobby\MatchmakingUI.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\HardpointUI.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\Crosshair.cs" />
+    <Compile Include="Assets\_Project\Scripts\Networking\NetworkSceneManager.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\WeaponData.cs" />
+    <Compile Include="Assets\_Project\Scripts\ScriptableObjects\GameModeData.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MobileButton.cs" />
     <Compile Include="Assets\_Project\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\TeamData.cs" />
+    <Compile Include="Assets\_Project\Scripts\Managers\GameModeManager.cs" />
+    <Compile Include="Assets\_Project\Scripts\UI\SceneLoader.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\AdvancedWeapon.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\Magazine.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\RespawnHandler.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\HealthBar.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\CaptureZone.cs" />
     <Compile Include="Assets\_Project\Scripts\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\_Project\Scripts\UI\MainMenu\MainMenuUI.cs" />
+    <Compile Include="Assets\_Project\Scripts\UI\Lobby\PlayerListItem.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\ZoneIndicator.cs" />
     <Compile Include="Assets\_Project\Scripts\Managers\QualityManager.cs" />
     <Compile Include="Assets\_Project\Scripts\Audio\WeaponAudio.cs" />
@@ -100,6 +108,7 @@
     <Compile Include="Assets\_Project\Scripts\Weapons\SimpleWeapon.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\GameHUD.cs" />
     <Compile Include="Assets\_Project\Scripts\VFX\VFXManager.cs" />
+    <Compile Include="Assets\_Project\Scripts\UI\MainMenu\GameModeSelector.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MatchEndUI.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\KillFeedUI.cs" />
     <Compile Include="Assets\_Project\Scripts\Input\MobileInputManager.cs" />
@@ -1213,6 +1222,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Netcode.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Netcode.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
@@ -1233,12 +1246,20 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Netcode.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.Netcode.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>Library\ScriptAssemblies\UnityEditor.Purchasing.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Networking.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Networking.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Purchasing">
@@ -1345,6 +1366,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Netcode.PackageChecker.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Netcode.PackageChecker.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1363,6 +1388,10 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Networking.Transport">
+      <HintPath>Library\ScriptAssemblies\Unity.Networking.Transport.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
