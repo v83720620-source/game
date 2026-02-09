@@ -74,7 +74,7 @@ namespace FlumpGame.Network.Player
             }
         }
         
-        [ServerRpc(RequireOwnership = true)]
+        [ServerRpc]
         private void UpdatePositionServerRpc(Vector3 position, Quaternion rotation, bool isGrounded)
         {
             // Сервер валидирует и обновляет

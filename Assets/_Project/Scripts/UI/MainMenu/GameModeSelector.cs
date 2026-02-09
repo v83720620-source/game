@@ -141,7 +141,7 @@ namespace FlumpGame.UI.MainMenu
             gameObject.SetActive(false);
             
             // Показываем главное меню
-            MainMenuUI mainMenu = FindObjectOfType<MainMenuUI>();
+            MainMenuUI mainMenu = FindAnyObjectByType<MainMenuUI>();
             if (mainMenu != null)
             {
                 mainMenu.ShowMainMenu();

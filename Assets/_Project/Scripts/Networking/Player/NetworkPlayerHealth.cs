@@ -63,7 +63,7 @@ namespace FlumpGame.Network.Player
         /// <summary>
         /// Применить урон (вызывается на сервере).
         /// </summary>
-        [ServerRpc(RequireOwnership = false)]
+        [ServerRpc]
         public void TakeDamageServerRpc(float damage, ulong attackerClientId)
         {
             if (!IsServer) return;
@@ -139,7 +139,7 @@ namespace FlumpGame.Network.Player
         /// <summary>
         /// Respawn игрока с полным здоровьем (вызывается на сервере).
         /// </summary>
-        [ServerRpc(RequireOwnership = false)]
+        [ServerRpc]
         public void RespawnServerRpc()
         {
             if (!IsServer) return;

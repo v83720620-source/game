@@ -95,7 +95,9 @@ namespace FlumpGame.Network.Player
             var hitBox = hit.collider.GetComponent<HitBox>();
             if (hitBox != null)
             {
-                return _damage * hitBox.DamageMultiplier;
+                // Используем множитель из DamageInfo
+                float multiplier = DamageInfo.GetZoneMultiplier(hitBox.HitZone);
+                return _damage * multiplier;
             }
             
             return _damage;
