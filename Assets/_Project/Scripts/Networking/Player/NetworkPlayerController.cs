@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using FlumpGame.Network.Match;
 
 namespace FlumpGame.Network.Player
 {
@@ -32,10 +33,27 @@ namespace FlumpGame.Network.Player
             _networkMovement = GetComponent<NetworkPlayerMovement>();
             _networkHealth = GetComponent<NetworkPlayerHealth>();
             _networkWeapon = GetComponent<NetworkWeapon>();
+            
+            // Кэшируем single-player компоненты
+            if (_playerMovement == null)
+                _playerMovement = GetComponent<PlayerMovement>();
+            if (_playerHealth == null)
+                _playerHealth = GetComponent<PlayerHealth>();
+            if (_camera == null)
+                _camera = GetComponentInChildren<FirstPersonCamera>();
+            if (_weapon == null && _weaponObject != null)
+                _weapon = _weaponObject.GetComponent<AdvancedWeapon>();
         }
         
         public override void OnNetworkSpawn()
         {
+            // ВАЖНО: Инициализируем _weaponObject ДО setup если он не назначен
+            if (_weaponObject == null && _weapon != null)
+            {
+                _weaponObject = _weapon.gameObject;
+                Debug.Log("[NetworkPlayer] _weaponObject auto-assigned from _weapon");
+            }
+            
             // Вызывается когда объект spawned в сети
             if (IsOwner)
             {
@@ -47,6 +65,20 @@ namespace FlumpGame.Network.Player
             }
             
             Debug.Log($"[NetworkPlayer] Spawned! IsOwner: {IsOwner}, IsServer: {IsServer}, ClientId: {OwnerClientId}");
+        }
+        
+        private void LateUpdate()
+        {
+            // АГРЕССИВНАЯ ПРОВЕРКА: Убедимся что оружие в правильном состоянии КАЖДЫЙ КАДР
+            // Только для локального игрока (для remote players weapon уже Destroy'ed)
+            if (IsOwner && _weaponObject != null)
+            {
+                if (!_weaponObject.activeSelf)
+                {
+                    _weaponObject.SetActive(true);
+                    Debug.LogWarning($"[NetworkPlayer] FORCED weapon ENABLED for LOCAL player (ClientId: {OwnerClientId})");
+                }
+            }
         }
         
         private void SetupLocalPlayer()
@@ -72,18 +104,26 @@ namespace FlumpGame.Network.Player
                 }
             }
             
-            // Включаем оружие
+            // Включаем NetworkWeapon
+            if (_networkWeapon != null)
+                _networkWeapon.enabled = true;
+            
+            // Включаем AdvancedWeapon (single-player компонент для эффектов)
             if (_weapon != null)
+            {
                 _weapon.enabled = true;
+                Debug.Log("[NetworkPlayer] AdvancedWeapon ENABLED for LOCAL player");
+            }
             
             // ПОКАЗЫВАЕМ Weapon GameObject для локального игрока
-            if (_weaponObject == null && _weapon != null)
-                _weaponObject = _weapon.gameObject;
-            
             if (_weaponObject != null)
             {
                 _weaponObject.SetActive(true);
-                Debug.Log("[NetworkPlayer] Weapon GameObject ENABLED for local player");
+                Debug.Log($"[NetworkPlayer] Weapon GameObject '{_weaponObject.name}' ENABLED for LOCAL player");
+            }
+            else
+            {
+                Debug.LogError("[NetworkPlayer] _weaponObject is NULL! Cannot enable weapon for local player!");
             }
             
             // Визуалы
@@ -119,18 +159,27 @@ namespace FlumpGame.Network.Player
                 }
             }
             
-            // Отключаем локальное оружие
+            // Отключаем NetworkWeapon
+            if (_networkWeapon != null)
+                _networkWeapon.enabled = false;
+            
+            // КРИТИЧЕСКИ ВАЖНО: Отключаем AdvancedWeapon для remote players!
             if (_weapon != null)
+            {
                 _weapon.enabled = false;
+                Debug.Log($"[NetworkPlayer] AdvancedWeapon DISABLED for REMOTE player (ClientId: {OwnerClientId})");
+            }
             
-            // СКРЫВАЕМ Weapon GameObject для удалённых игроков (ВАЖНО!)
-            if (_weaponObject == null && _weapon != null)
-                _weaponObject = _weapon.gameObject;
-            
+            // УДАЛЯЕМ Weapon GameObject для удалённых игроков (ВАЖНО!)
+            // SetActive(false) НЕ РАБОТАЕТ когда SetLayerRecursively вызывается после!
             if (_weaponObject != null)
             {
-                _weaponObject.SetActive(false);
-                Debug.Log("[NetworkPlayer] Weapon GameObject DISABLED for remote player - prevents flying weapon bug!");
+                Destroy(_weaponObject);
+                Debug.Log($"[NetworkPlayer] Weapon GameObject '{_weaponObject.name}' DESTROYED for REMOTE player (ClientId: {OwnerClientId})");
+            }
+            else
+            {
+                Debug.LogError($"[NetworkPlayer] _weaponObject is NULL! Cannot destroy weapon for remote player (ClientId: {OwnerClientId})");
             }
             
             // Визуалы
@@ -161,12 +210,25 @@ namespace FlumpGame.Network.Player
         }
         
         /// <summary>
-        /// Получить team ID игрока (для будущего использования).
+        /// Получить team ID игрока из NetworkTeamManager.
         /// </summary>
         public int GetTeamId()
         {
-            // TODO: Реализовать team assignment в Этапе 15
-            return IsOwner ? 1 : 2; // Временно
+            if (NetworkTeamManager.Instance != null)
+            {
+                return NetworkTeamManager.Instance.GetPlayerTeam(OwnerClientId);
+            }
+            
+            // Fallback
+            return 0;
+        }
+        
+        /// <summary>
+        /// Получить ClientId владельца этого игрока.
+        /// </summary>
+        public ulong GetClientId()
+        {
+            return OwnerClientId;
         }
     }
 }

@@ -65,6 +65,7 @@
     <Compile Include="Assets\_Project\Scripts\AI\BotWeapon.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\SpawnManager.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\HardpointGameMode.cs" />
+    <Compile Include="Assets\_Project\Scripts\GameModes\Network\NetworkDuelMode.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Player\NetworkWeapon.cs" />
     <Compile Include="Assets\_Project\Scripts\Audio\AudioManager.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\AmmoDisplay.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\_Project\Scripts\Networking\Player\NetworkPlayerMovement.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\Lobby\MatchmakingUI.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\HardpointUI.cs" />
+    <Compile Include="Assets\_Project\Scripts\Networking\Match\NetworkTeamManager.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\Crosshair.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\NetworkSceneManager.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\WeaponData.cs" />
@@ -86,12 +88,14 @@
     <Compile Include="Assets\_Project\Scripts\UI\SceneLoader.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\AdvancedWeapon.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\Magazine.cs" />
+    <Compile Include="Assets\_Project\Scripts\Networking\Match\NetworkMatchManager.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\RespawnHandler.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\HealthBar.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\CaptureZone.cs" />
     <Compile Include="Assets\_Project\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MainMenu\MainMenuUI.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\Lobby\PlayerListItem.cs" />
+    <Compile Include="Assets\_Project\Scripts\Networking\Match\NetworkSpawnManager.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\ZoneIndicator.cs" />
     <Compile Include="Assets\_Project\Scripts\Managers\QualityManager.cs" />
     <Compile Include="Assets\_Project\Scripts\Audio\WeaponAudio.cs" />
@@ -114,6 +118,7 @@
     <Compile Include="Assets\_Project\Scripts\UI\MainMenu\GameModeSelector.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MatchEndUI.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\KillFeedUI.cs" />
+    <Compile Include="Assets\_Project\Scripts\GameModes\Network\NetworkTDM3v3Mode.cs" />
     <Compile Include="Assets\_Project\Scripts\Input\MobileInputManager.cs" />
     <Compile Include="Assets\_Project\Scripts\Combat\HitZone.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Player\NetworkPlayerHealth.cs" />

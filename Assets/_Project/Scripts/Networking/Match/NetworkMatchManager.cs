@@ -93,11 +93,12 @@ namespace FlumpGame.Network.Match
         }
         
         /// <summary>
-        /// Запускает матч (только сервер).
+        /// Запускает матч напрямую на сервере.
         /// </summary>
-        [ServerRpc(RequireOwnership = false)]
-        public void StartMatchServerRpc()
+        public void StartMatch()
         {
+            if (!IsServer) return;
+            
             if (CurrentState != MatchState.WaitingForPlayers)
             {
                 Debug.LogWarning("[NetworkMatchManager] Cannot start - not in WaitingForPlayers state");
@@ -105,6 +106,15 @@ namespace FlumpGame.Network.Match
             }
             
             StartCoroutine(StartMatchSequence());
+        }
+        
+        /// <summary>
+        /// Запускает матч через RPC (для клиентов).
+        /// </summary>
+        [Rpc(SendTo.Server)]
+        public void StartMatchServerRpc()
+        {
+            StartMatch();
         }
         
         private IEnumerator StartMatchSequence()

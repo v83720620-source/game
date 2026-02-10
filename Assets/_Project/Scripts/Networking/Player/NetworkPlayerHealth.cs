@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 using System;
+using FlumpGame.GameModes.Network;
 
 namespace FlumpGame.Network.Player
 {
@@ -90,6 +91,22 @@ namespace FlumpGame.Network.Player
             Debug.Log($"[NetworkHealth] Player died! Killer: {killer?.name}");
             
             ulong killerClientId = killer != null ? GetClientIdFromPlayer(killer) : OwnerClientId;
+            
+            // ============================================
+            // ИНТЕГРАЦИЯ С GAME MODES
+            // ============================================
+            
+            // Notify активного game mode о kill/death
+            if (NetworkDuelMode.Instance != null)
+            {
+                NetworkDuelMode.Instance.OnPlayerKilled(killerClientId, OwnerClientId);
+                Debug.Log($"[NetworkHealth] Notified NetworkDuelMode: {killerClientId} killed {OwnerClientId}");
+            }
+            else if (NetworkTDM3v3Mode.Instance != null)
+            {
+                NetworkTDM3v3Mode.Instance.OnPlayerKilled(killerClientId, OwnerClientId);
+                Debug.Log($"[NetworkHealth] Notified NetworkTDM3v3Mode: {killerClientId} killed {OwnerClientId}");
+            }
             
             // Уведомляем всех клиентов о смерти
             NotifyDeathClientRpc(killerClientId);

@@ -582,7 +582,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8168793043447932429}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1ad20d8454268045b846ca6ec8ba476, type: 3}
   m_Name: 
@@ -679,7 +679,7 @@ MonoBehaviour:
   _weapon: {fileID: 2299650737564698397}
   _localPlayerVisuals: {fileID: 0}
   _remotePlayerVisuals: {fileID: 0}
-  _weaponObject: {fileID: 0}
+  _weaponObject: {fileID: 8610855387941574674}
 --- !u!114 &5270034526291823735
 MonoBehaviour:
   m_ObjectHideFlags: 0
