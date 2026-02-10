@@ -24,6 +24,7 @@ namespace FlumpGame.Network.Player
         [Header("Visual")]
         [SerializeField] private GameObject _localPlayerVisuals;
         [SerializeField] private GameObject _remotePlayerVisuals;
+        [SerializeField] private GameObject _weaponObject; // Weapon GameObject для скрытия на удалённых игроках
         
         private void Awake()
         {
@@ -59,11 +60,31 @@ namespace FlumpGame.Network.Player
             
             // Включаем камеру
             if (_camera != null)
+            {
                 _camera.enabled = true;
+                
+                // Включаем AudioListener только для локального игрока
+                AudioListener audioListener = _camera.GetComponentInChildren<AudioListener>();
+                if (audioListener != null)
+                {
+                    audioListener.enabled = true;
+                    Debug.Log("[NetworkPlayer] AudioListener ENABLED for local player");
+                }
+            }
             
             // Включаем оружие
             if (_weapon != null)
                 _weapon.enabled = true;
+            
+            // ПОКАЗЫВАЕМ Weapon GameObject для локального игрока
+            if (_weaponObject == null && _weapon != null)
+                _weaponObject = _weapon.gameObject;
+            
+            if (_weaponObject != null)
+            {
+                _weaponObject.SetActive(true);
+                Debug.Log("[NetworkPlayer] Weapon GameObject ENABLED for local player");
+            }
             
             // Визуалы
             if (_localPlayerVisuals != null)
@@ -86,11 +107,31 @@ namespace FlumpGame.Network.Player
             
             // Отключаем камеру
             if (_camera != null)
+            {
                 _camera.enabled = false;
+                
+                // ОТКЛЮЧАЕМ AudioListener для удалённых игроков (иначе будет конфликт!)
+                AudioListener audioListener = _camera.GetComponentInChildren<AudioListener>();
+                if (audioListener != null)
+                {
+                    audioListener.enabled = false;
+                    Debug.Log("[NetworkPlayer] AudioListener DISABLED for remote player");
+                }
+            }
             
             // Отключаем локальное оружие
             if (_weapon != null)
                 _weapon.enabled = false;
+            
+            // СКРЫВАЕМ Weapon GameObject для удалённых игроков (ВАЖНО!)
+            if (_weaponObject == null && _weapon != null)
+                _weaponObject = _weapon.gameObject;
+            
+            if (_weaponObject != null)
+            {
+                _weaponObject.SetActive(false);
+                Debug.Log("[NetworkPlayer] Weapon GameObject DISABLED for remote player - prevents flying weapon bug!");
+            }
             
             // Визуалы
             if (_localPlayerVisuals != null)
