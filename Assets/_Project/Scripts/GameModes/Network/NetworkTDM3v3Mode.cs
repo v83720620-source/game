@@ -78,6 +78,14 @@ namespace FlumpGame.GameModes.Network
                 _playerDeaths[clientId] = 0;
             }
             
+            // AUTO-FILL TEAMS WITH BOTS (Unity Netcode best practice)
+            var botSpawner = FlumpGame.Network.AI.NetworkBotSpawner.Instance;
+            if (botSpawner != null)
+            {
+                botSpawner.AutoFillTeams();
+                Debug.Log("[NetworkTDM3v3Mode] Auto-filled teams with bots");
+            }
+            
             _matchStarted = true;
             
             // Start match (прямой вызов на сервере)

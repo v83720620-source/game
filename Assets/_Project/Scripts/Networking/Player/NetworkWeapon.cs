@@ -63,7 +63,7 @@ namespace FlumpGame.Network.Player
             }
         }
         
-        [ServerRpc]
+        [Rpc(SendTo.Server)]
         private void FireServerRpc(Vector3 origin, Vector3 direction)
         {
             // Сервер проверяет попадание
@@ -103,7 +103,7 @@ namespace FlumpGame.Network.Player
             return _damage;
         }
         
-        [ClientRpc]
+        [Rpc(SendTo.ClientsAndHost)]
         private void NotifyHitClientRpc(Vector3 hitPoint, Vector3 hitNormal)
         {
             // Все клиенты проигрывают эффект попадания

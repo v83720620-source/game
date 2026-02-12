@@ -39,6 +39,14 @@ public class BotVision : MonoBehaviour
         
         foreach (Collider target in targetsInRange)
         {
+            // Skip self
+            if (target.transform == transform || target.transform.IsChildOf(transform))
+                continue;
+            
+            // NETWORK: Check if target is enemy (not same team)
+            if (!IsEnemy(target.gameObject))
+                continue;
+            
             Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
             float angleToTarget = Vector3.Angle(transform.forward, directionToTarget);
             
@@ -109,6 +117,50 @@ public class BotVision : MonoBehaviour
         
         // Check obstacles
         return !Physics.Raycast(transform.position + Vector3.up, directionToPosition, distanceToPosition, _obstacleMask);
+    }
+    
+    /// <summary>
+    /// NETWORK SUPPORT: Check if target is enemy (different team).
+    /// </summary>
+    private bool IsEnemy(GameObject target)
+    {
+        // Check NetworkPlayerController (multiplayer players)
+        var networkPlayer = target.GetComponent<FlumpGame.Network.Player.NetworkPlayerController>();
+        if (networkPlayer != null)
+        {
+            int playerTeam = networkPlayer.GetTeamId();
+            
+            var myNetworkBot = GetComponent<FlumpGame.Network.AI.NetworkBotController>();
+            int myTeam = myNetworkBot != null ? myNetworkBot.TeamId : 0;
+            
+            return playerTeam != myTeam;
+        }
+        
+        // Check NetworkBotController (multiplayer bots)
+        var networkBot = target.GetComponent<FlumpGame.Network.AI.NetworkBotController>();
+        if (networkBot != null)
+        {
+            int botTeam = networkBot.TeamId;
+            
+            var myNetworkBot = GetComponent<FlumpGame.Network.AI.NetworkBotController>();
+            int myTeam = myNetworkBot != null ? myNetworkBot.TeamId : 0;
+            
+            return botTeam != myTeam;
+        }
+        
+        // Fallback: old TeamMember system (single-player)
+        var teamMember = target.GetComponent<TeamMember>();
+        if (teamMember != null)
+        {
+            var myTeamMember = GetComponent<TeamMember>();
+            Team targetTeam = teamMember.Team;
+            Team myTeam = myTeamMember != null ? myTeamMember.Team : Team.None;
+            
+            return targetTeam != myTeam;
+        }
+        
+        // Unknown - assume enemy for safety
+        return true;
     }
     
     private void OnDrawGizmosSelected()

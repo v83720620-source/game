@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.AI.Navigation.Samples", "Unity.AI.Navigation.Samples.csproj", "{4E440B89-B68A-2322-63A5-E425213285A9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{8D34BCF4-B34A-40B4-80F0-F3677D47EB3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.AI.Navigation.Samples", "Unity.AI.Navigation.Samples.csproj", "{4E440B89-B68A-2322-63A5-E425213285A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{9BCBDD98-BE05-B3DD-C4EA-F296D05A7C6C}"
 EndProject
@@ -15,14 +15,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4E440B89-B68A-2322-63A5-E425213285A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E440B89-B68A-2322-63A5-E425213285A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E440B89-B68A-2322-63A5-E425213285A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E440B89-B68A-2322-63A5-E425213285A9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8D34BCF4-B34A-40B4-80F0-F3677D47EB3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8D34BCF4-B34A-40B4-80F0-F3677D47EB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D34BCF4-B34A-40B4-80F0-F3677D47EB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D34BCF4-B34A-40B4-80F0-F3677D47EB3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E440B89-B68A-2322-63A5-E425213285A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E440B89-B68A-2322-63A5-E425213285A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E440B89-B68A-2322-63A5-E425213285A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E440B89-B68A-2322-63A5-E425213285A9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9BCBDD98-BE05-B3DD-C4EA-F296D05A7C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9BCBDD98-BE05-B3DD-C4EA-F296D05A7C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BCBDD98-BE05-B3DD-C4EA-F296D05A7C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU

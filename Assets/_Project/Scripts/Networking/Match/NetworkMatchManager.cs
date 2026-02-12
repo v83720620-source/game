@@ -236,14 +236,14 @@ namespace FlumpGame.Network.Match
         // CLIENT RPCs
         // ============================================
         
-        [ClientRpc]
+        [Rpc(SendTo.ClientsAndHost)]
         private void NotifyMatchStartClientRpc()
         {
             Debug.Log("[NetworkMatchManager] Match started! (Client notification)");
             // Play sound, show notification, etc.
         }
         
-        [ClientRpc]
+        [Rpc(SendTo.ClientsAndHost)]
         private void NotifyMatchEndClientRpc(int winningTeam)
         {
             Debug.Log($"[NetworkMatchManager] Match ended! Winner: Team {winningTeam} (Client notification)");

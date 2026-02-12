@@ -61,7 +61,9 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.3f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Project\Scripts\Network\Bots\LastKnownPosition.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\TeamManager.cs" />
+    <Compile Include="Assets\_Project\Scripts\Networking\AI\NetworkBotHealth.cs" />
     <Compile Include="Assets\_Project\Scripts\AI\BotWeapon.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\SpawnManager.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\HardpointGameMode.cs" />
@@ -72,12 +74,18 @@
     <Compile Include="Assets\_Project\Scripts\Combat\HitBox.cs" />
     <Compile Include="Assets\_Project\Scripts\AI\BotVision.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\VirtualJoystick.cs" />
+    <Compile Include="Assets\_Project\Scripts\Network\Bots\AFKDetector.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\CustomNetworkManager.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Player\NetworkPlayerMovement.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\Lobby\MatchmakingUI.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\HardpointUI.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Match\NetworkTeamManager.cs" />
+    <Compile Include="Assets\_Project\Scripts\Network\Bots\MercyRuleSystem.cs" />
+    <Compile Include="Assets\_Project\Scripts\UI\LoadingSpinner.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\Crosshair.cs" />
+    <Compile Include="Assets\_Project\Scripts\Network\Bots\BotData.cs" />
+    <Compile Include="Assets\_Project\Scripts\Network\Bots\ReconnectHandler.cs" />
+    <Compile Include="Assets\_Project\Scripts\Networking\AI\NetworkBotSpawner.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\NetworkSceneManager.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\WeaponData.cs" />
     <Compile Include="Assets\_Project\Scripts\ScriptableObjects\GameModeData.cs" />
@@ -89,6 +97,7 @@
     <Compile Include="Assets\_Project\Scripts\Weapons\AdvancedWeapon.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\Magazine.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Match\NetworkMatchManager.cs" />
+    <Compile Include="Assets\_Project\Scripts\Network\Bots\BotNameGenerator.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\RespawnHandler.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\HealthBar.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\CaptureZone.cs" />
@@ -104,12 +113,14 @@
     <Compile Include="Assets\_Project\Scripts\GameModes\MatchState.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\TDMGameMode.cs" />
+    <Compile Include="Assets\_Project\Scripts\Networking\AI\NetworkBotController.cs" />
     <Compile Include="Assets\_Project\Scripts\Debug\FPSCounter.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Player\NetworkPlayerController.cs" />
     <Compile Include="Assets\_Project\Scripts\AI\BotAI.cs" />
     <Compile Include="Assets\_Project\Scripts\VFX\HitEffect.cs" />
     <Compile Include="Assets\_Project\Scripts\Camera\FirstPersonCamera.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MatchUI.cs" />
+    <Compile Include="Assets\_Project\Scripts\Network\Bots\BackfillManager.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\MatchManager.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\TeamMember.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\SimpleWeapon.cs" />
@@ -117,10 +128,12 @@
     <Compile Include="Assets\_Project\Scripts\VFX\VFXManager.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MainMenu\GameModeSelector.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MatchEndUI.cs" />
+    <Compile Include="Assets\_Project\Scripts\Network\QueueSystem.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\KillFeedUI.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\Network\NetworkTDM3v3Mode.cs" />
     <Compile Include="Assets\_Project\Scripts\Input\MobileInputManager.cs" />
     <Compile Include="Assets\_Project\Scripts\Combat\HitZone.cs" />
+    <Compile Include="Assets\_Project\Scripts\Network\Bots\BotFairPlay.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Player\NetworkPlayerHealth.cs" />
     <Compile Include="Assets\_Project\Scripts\VFX\BulletHole.cs" />
     <Compile Include="Assets\_Project\Scripts\VFX\MuzzleFlash.cs" />

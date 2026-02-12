@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using FlumpGame.Network;
 
 namespace FlumpGame.UI.Lobby
 {
     /// <summary>
     /// Управляет UI matchmaking (поиск игроков).
+    /// Использует реальную QueueSystem вместо симуляции.
     /// </summary>
     public class MatchmakingUI : MonoBehaviour
     {
@@ -31,14 +33,29 @@ namespace FlumpGame.UI.Lobby
         [Header("Settings")]
         [SerializeField] private float _spinnerRotationSpeed = 180f; // degrees per second
         
+        // Queue System
+        private QueueSystem _queueSystem;
         private bool _isSearching = false;
-        private float _searchTimer = 0f;
-        private int _playersFound = 0;
-        private int _totalPlayersNeeded = 10;
         
         private void Awake()
         {
             SetupButtons();
+            
+            // Создаём Queue System
+            _queueSystem = new QueueSystem();
+            _queueSystem.OnStateChanged += OnQueueStateChanged;
+            _queueSystem.OnPlayersChanged += OnPlayersChanged;
+            _queueSystem.OnMatchReady += OnMatchReady;
+        }
+        
+        private void OnDestroy()
+        {
+            if (_queueSystem != null)
+            {
+                _queueSystem.OnStateChanged -= OnQueueStateChanged;
+                _queueSystem.OnPlayersChanged -= OnPlayersChanged;
+                _queueSystem.OnMatchReady -= OnMatchReady;
+            }
         }
         
         private void OnEnable()
@@ -56,7 +73,11 @@ namespace FlumpGame.UI.Lobby
         {
             if (_isSearching)
             {
-                UpdateSearchTimer();
+                // Обновляем Queue System
+                _queueSystem?.UpdateQueue();
+                
+                // UI обновления
+                UpdateTimerUI();
                 RotateLoadingSpinner();
             }
         }
@@ -91,40 +112,38 @@ namespace FlumpGame.UI.Lobby
         private void StartSearch()
         {
             _isSearching = true;
-            _searchTimer = 0f;
-            _playersFound = 0;
             
             // Определяем количество игроков
             var selectedMode = Managers.GameModeManager.Instance.SelectedGameMode;
+            int playersNeeded = 10; // Default
+            
             if (selectedMode != null)
             {
-                _totalPlayersNeeded = selectedMode.playersPerTeam * 2;
+                playersNeeded = selectedMode.playersPerTeam * 2;
             }
             
+            // Запускаем реальную Queue System
+            _queueSystem.StartSearch(playersNeeded);
+            
             UpdateStatusText("Searching for players...");
-            UpdatePlayersFoundText();
             
-            Debug.Log($"[MatchmakingUI] Starting search for {_totalPlayersNeeded} players");
-            
-            // TODO: Начать реальный поиск игроков (Этап 16)
-            // Пока симулируем
-            StartCoroutine(SimulateMatchmaking());
+            Debug.Log($"[MatchmakingUI] Started real matchmaking for {playersNeeded} players");
         }
         
         private void StopSearch()
         {
             _isSearching = false;
+            _queueSystem?.StopSearch();
             StopAllCoroutines();
         }
         
-        private void UpdateSearchTimer()
+        private void UpdateTimerUI()
         {
-            _searchTimer += Time.deltaTime;
-            
-            if (_timerText != null)
+            if (_timerText != null && _queueSystem != null)
             {
-                int minutes = Mathf.FloorToInt(_searchTimer / 60f);
-                int seconds = Mathf.FloorToInt(_searchTimer % 60f);
+                float time = _queueSystem.TimeInQueue;
+                int minutes = Mathf.FloorToInt(time / 60f);
+                int seconds = Mathf.FloorToInt(time % 60f);
                 _timerText.text = $"{minutes:00}:{seconds:00}";
             }
         }
@@ -145,11 +164,11 @@ namespace FlumpGame.UI.Lobby
                 _statusText.text = status;
         }
         
-        private void UpdatePlayersFoundText()
+        private void UpdatePlayersFoundText(int found, int needed)
         {
             if (_playersFoundText != null)
             {
-                _playersFoundText.text = $"Players found: {_playersFound}/{_totalPlayersNeeded}";
+                _playersFoundText.text = $"Players found: {found}/{needed}";
             }
         }
         
@@ -168,34 +187,45 @@ namespace FlumpGame.UI.Lobby
         }
         
         // ============================================
-        // ВРЕМЕННАЯ СИМУЛЯЦИЯ MATCHMAKING (для теста)
-        // TODO: Заменить на реальный matchmaking в Этапе 16
+        // QUEUE SYSTEM CALLBACKS
         // ============================================
         
-        private IEnumerator SimulateMatchmaking()
+        private void OnQueueStateChanged(QueueSystem.QueueState newState)
         {
-            yield return new WaitForSeconds(1f);
+            Debug.Log($"[MatchmakingUI] Queue state: {newState}");
             
-            // Симулируем поиск игроков
-            for (int i = 1; i <= _totalPlayersNeeded; i++)
+            switch (newState)
             {
-                yield return new WaitForSeconds(Random.Range(1f, 3f));
+                case QueueSystem.QueueState.Searching:
+                    UpdateStatusText("Searching for players...");
+                    break;
                 
-                _playersFound = i;
-                UpdatePlayersFoundText();
+                case QueueSystem.QueueState.BotFilling:
+                    UpdateStatusText("Adding bots...");
+                    break;
                 
-                Debug.Log($"[MatchmakingUI] Found {_playersFound}/{_totalPlayersNeeded} players");
+                case QueueSystem.QueueState.Starting:
+                    UpdateStatusText("Match starting!");
+                    break;
                 
-                if (_playersFound >= _totalPlayersNeeded)
-                {
-                    UpdateStatusText("Match found!");
-                    yield return new WaitForSeconds(1f);
-                    
-                    // Показываем список игроков
-                    ShowPlayerList();
-                    yield break;
-                }
+                case QueueSystem.QueueState.Idle:
+                    _isSearching = false;
+                    break;
             }
+        }
+        
+        private void OnPlayersChanged(int found, int needed)
+        {
+            UpdatePlayersFoundText(found, needed);
+            Debug.Log($"[MatchmakingUI] Players: {found}/{needed}");
+        }
+        
+        private void OnMatchReady()
+        {
+            Debug.Log("[MatchmakingUI] Match ready! Loading...");
+            
+            // Показываем список игроков
+            ShowPlayerList();
         }
         
         private void ShowPlayerList()

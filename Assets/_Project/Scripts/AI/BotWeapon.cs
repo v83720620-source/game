@@ -82,7 +82,36 @@ public class BotWeapon : MonoBehaviour
             // Spawn hit effects
             SpawnHitEffects(hit);
             
-            // Check for HitBox
+            // NETWORK: Try NetworkPlayerHealth first (multiplayer players)
+            var networkPlayerHealth = hit.collider.GetComponentInParent<FlumpGame.Network.Player.NetworkPlayerHealth>();
+            if (networkPlayerHealth != null)
+            {
+                float damage = CalculateNetworkDamage(hit);
+                
+                // Get bot ID for attacker tracking
+                var botController = GetComponent<FlumpGame.Network.AI.NetworkBotController>();
+                ulong botId = botController != null ? botController.BotId : 0;
+                
+                networkPlayerHealth.TakeDamageServerRpc(damage, botId);
+                Debug.DrawLine(_weaponMuzzle.position, hit.point, Color.red, 0.5f);
+                return true;
+            }
+            
+            // NETWORK: Try NetworkBotHealth (multiplayer bots)
+            var networkBotHealth = hit.collider.GetComponentInParent<FlumpGame.Network.AI.NetworkBotHealth>();
+            if (networkBotHealth != null)
+            {
+                float damage = CalculateNetworkDamage(hit);
+                
+                var botController = GetComponent<FlumpGame.Network.AI.NetworkBotController>();
+                ulong botId = botController != null ? botController.BotId : 0;
+                
+                networkBotHealth.TakeDamageServerRpc(damage, botId);
+                Debug.DrawLine(_weaponMuzzle.position, hit.point, Color.red, 0.5f);
+                return true;
+            }
+            
+            // FALLBACK: Old HitBox system (single-player)
             HitBox hitBox = hit.collider.GetComponent<HitBox>();
             if (hitBox != null)
             {
@@ -96,23 +125,18 @@ public class BotWeapon : MonoBehaviour
                 );
                 
                 hitBox.TakeDamage(damageInfo);
-                
-                // Debug
-                Debug.DrawLine(_weaponMuzzle.position, hit.point, Color.red, 0.5f);
-            }
-            else
-            {
-                // Try direct health
-                PlayerHealth health = hit.collider.GetComponent<PlayerHealth>();
-                if (health != null)
-                {
-                    health.TakeDamage(_damage, gameObject);
-                }
-                
                 Debug.DrawLine(_weaponMuzzle.position, hit.point, Color.yellow, 0.5f);
+                return true;
             }
             
-            return true;
+            // FALLBACK: Try direct health (single-player)
+            PlayerHealth health = hit.collider.GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(_damage, gameObject);
+                Debug.DrawLine(_weaponMuzzle.position, hit.point, Color.cyan, 0.5f);
+                return true;
+            }
         }
         
         Debug.DrawRay(_weaponMuzzle.position, direction * _range, Color.cyan, 0.5f);
@@ -158,6 +182,22 @@ public class BotWeapon : MonoBehaviour
         {
             _audioManager.PlayHitSound(hit.point);
         }
+    }
+    
+    /// <summary>
+    /// NETWORK SUPPORT: Calculate damage with headshot multiplier.
+    /// </summary>
+    private float CalculateNetworkDamage(RaycastHit hit)
+    {
+        // Check for HitBox to get zone multiplier
+        var hitBox = hit.collider.GetComponent<HitBox>();
+        if (hitBox != null)
+        {
+            float multiplier = DamageInfo.GetZoneMultiplier(hitBox.HitZone);
+            return _damage * multiplier;
+        }
+        
+        return _damage;
     }
     
     /// <summary>

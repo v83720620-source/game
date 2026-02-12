@@ -159,7 +159,7 @@ namespace FlumpGame.Network.Match
             NotifyTeamAssignmentClientRpc(clientId, newTeam);
         }
         
-        [ClientRpc]
+        [Rpc(SendTo.ClientsAndHost)]
         private void NotifyTeamAssignmentClientRpc(ulong clientId, int teamId)
         {
             Debug.Log($"[NetworkTeamManager] Player {clientId} is on Team {teamId} (Client notification)");
