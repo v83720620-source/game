@@ -253,6 +253,8 @@ MonoBehaviour:
   _hitMask:
     serializedVersion: 2
     m_Bits: 1
+  _vfxManager: {fileID: 0}
+  _audioManager: {fileID: 0}
 --- !u!1 &7948537749958444667
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +458,7 @@ MonoBehaviour:
   _sightAngle: 60
   _targetMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 1
@@ -481,6 +483,8 @@ MonoBehaviour:
   _hitMask:
     serializedVersion: 2
     m_Bits: 0
+  _vfxManager: {fileID: 0}
+  _audioManager: {fileID: 0}
 --- !u!114 &7278807188970295512
 MonoBehaviour:
   m_ObjectHideFlags: 0
