@@ -71,6 +71,9 @@
     <Compile Include="Assets\_Project\Scripts\Networking\Player\NetworkWeapon.cs" />
     <Compile Include="Assets\_Project\Scripts\Audio\AudioManager.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\AmmoDisplay.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\BulletHoleTest.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\MuzzleFlashCode.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\WeaponWallFix.cs" />
     <Compile Include="Assets\_Project\Scripts\Combat\HitBox.cs" />
     <Compile Include="Assets\_Project\Scripts\AI\BotVision.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\VirtualJoystick.cs" />
@@ -106,7 +109,9 @@
     <Compile Include="Assets\_Project\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MainMenu\MainMenuUI.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\Lobby\PlayerListItem.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\HitEffectSpawner.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Match\NetworkSpawnManager.cs" />
+    <Compile Include="Assets\Easy FPS\Scripts\MouseLookScript.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\ZoneIndicator.cs" />
     <Compile Include="Assets\_Project\Scripts\Managers\QualityManager.cs" />
     <Compile Include="Assets\_Project\Scripts\Audio\WeaponAudio.cs" />
@@ -114,10 +119,16 @@
     <Compile Include="Assets\_Project\Scripts\UI\HitMarker.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\MatchState.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\TDMGameMode.cs" />
+    <Compile Include="Assets\Easy FPS\Scripts\GunScript.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\AI\NetworkBotController.cs" />
     <Compile Include="Assets\_Project\Scripts\Debug\FPSCounter.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Player\NetworkPlayerController.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\WeaponSwitcher.cs" />
     <Compile Include="Assets\_Project\Scripts\AI\BotAI.cs" />
+    <Compile Include="Assets\Easy FPS\Scripts\GunInventory.cs" />
+    <Compile Include="Assets\Easy FPS\Scripts\BulletScript.cs" />
+    <Compile Include="Assets\Easy FPS\Scripts\PlayerMovementScript.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\WeaponAim.cs" />
     <Compile Include="Assets\_Project\Scripts\VFX\HitEffect.cs" />
     <Compile Include="Assets\_Project\Scripts\Camera\FirstPersonCamera.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MatchUI.cs" />
@@ -126,12 +137,17 @@
     <Compile Include="Assets\Models\Оружие\Основное оружие\CameraBob.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\TeamMember.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\SimpleWeapon.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\BulletTracer.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\GameHUD.cs" />
     <Compile Include="Assets\_Project\Scripts\VFX\VFXManager.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\BulletHoleSpawner.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MainMenu\GameModeSelector.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\PistolAim.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MatchEndUI.cs" />
     <Compile Include="Assets\_Project\Scripts\Network\QueueSystem.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\WeaponAimCode.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\KillFeedUI.cs" />
+    <Compile Include="Assets\Easy FPS\Scripts\DestroyAfterTimeParticle.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\Network\NetworkTDM3v3Mode.cs" />
     <Compile Include="Assets\_Project\Scripts\Input\MobileInputManager.cs" />
     <Compile Include="Assets\_Project\Scripts\Combat\HitZone.cs" />
@@ -1222,6 +1238,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.Netcode.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
@@ -1420,6 +1440,10 @@
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.AIIntegration.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.AIIntegration.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
