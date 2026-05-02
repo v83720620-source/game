@@ -100,6 +100,7 @@
     <Compile Include="Assets\_Project\Scripts\UI\SceneLoader.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\AdvancedWeapon.cs" />
     <Compile Include="Assets\_Project\Scripts\Weapons\Magazine.cs" />
+    <Compile Include="Assets\Models\Персонажи\PlayerPoseSwitcher.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Match\NetworkMatchManager.cs" />
     <Compile Include="Assets\Models\Оружие\Основное оружие\WeaponSway.cs" />
     <Compile Include="Assets\_Project\Scripts\Network\Bots\BotNameGenerator.cs" />
@@ -120,9 +121,11 @@
     <Compile Include="Assets\_Project\Scripts\GameModes\MatchState.cs" />
     <Compile Include="Assets\_Project\Scripts\GameModes\TDMGameMode.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\GunScript.cs" />
+    <Compile Include="Assets\Models\Оружие\Основное оружие\AttachWeapon.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\AI\NetworkBotController.cs" />
     <Compile Include="Assets\_Project\Scripts\Debug\FPSCounter.cs" />
     <Compile Include="Assets\_Project\Scripts\Networking\Player\NetworkPlayerController.cs" />
+    <Compile Include="Assets\Models\Персонажи\анимации\Lite Rifle Pack\PlayerAnim.cs" />
     <Compile Include="Assets\Models\Оружие\Основное оружие\WeaponSwitcher.cs" />
     <Compile Include="Assets\_Project\Scripts\AI\BotAI.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\GunInventory.cs" />

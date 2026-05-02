@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 12cce364bb39107458db92985a0d06a9
+guid: fcf02220830e8df48b249413c12fa03d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -84,31 +84,31 @@ ModelImporter:
     serializedVersion: 3
     human: []
     skeleton:
-    - name: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436(Clone)"
+    - name: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436 1(Clone)"
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Camera
-      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436(Clone)"
+      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436 1(Clone)"
       position: {x: -7.3588915, y: 4.958309, z: 6.925791}
-      rotation: {x: 0.09062851, y: 0.89379627, z: -0.20997299, w: 0.3857799}
-      scale: {x: 0.99999994, y: 1, z: 1}
+      rotation: {x: 0.09062847, y: 0.89379627, z: -0.20997298, w: 0.3857799}
+      scale: {x: 100, y: 100.00001, z: 99.99999}
     - name: Light
-      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436(Clone)"
+      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436 1(Clone)"
       position: {x: -4.0762453, y: 5.903862, z: -1.005454}
-      rotation: {x: 0.52327543, y: -0.34203398, z: 0.72694236, w: 0.2841663}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      rotation: {x: 0.52327543, y: -0.34203392, z: 0.72694236, w: 0.28416622}
+      scale: {x: 100.00001, y: 100, z: 100}
     - name: tripo_node_07e162d4
-      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436(Clone)"
+      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436 1(Clone)"
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
-      scale: {x: 0.78, y: 1, z: 1}
+      scale: {x: 78, y: 100, z: 100}
     - name: tripo_node_07e162d4.001
-      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436(Clone)"
+      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436 1(Clone)"
       position: {x: 0.0067423526, y: -0.019892083, z: 0}
-      rotation: {x: -0.70680565, y: 0.020635355, z: -0.020635352, w: 0.7068056}
-      scale: {x: 0.9263731, y: 0.9263731, z: 0.9263731}
+      rotation: {x: -0.70680565, y: 0.020635352, z: -0.020635352, w: 0.7068056}
+      scale: {x: 92.63732, y: 92.637314, z: 92.63732}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -123,7 +123,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1

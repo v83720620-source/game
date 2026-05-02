@@ -1,9 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponSwitcher : MonoBehaviour
 {
     public GameObject[] weapons;
-    int currentWeapon = 0;
+
+    int currentWeapon = -1;
 
     void Start()
     {
@@ -19,11 +20,13 @@ public class WeaponSwitcher : MonoBehaviour
 
     void SwitchWeapon(int index)
     {
+        if (index == currentWeapon) return;
+
+        currentWeapon = index;
+
         for (int i = 0; i < weapons.Length; i++)
         {
             weapons[i].SetActive(i == index);
         }
-
-        currentWeapon = index;
     }
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 12cce364bb39107458db92985a0d06a9
+guid: 68509416f9008a1469cde6e09fd053f8
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -22,7 +22,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -83,32 +83,7 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton:
-    - name: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436(Clone)"
-      parentName: 
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Camera
-      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436(Clone)"
-      position: {x: -7.3588915, y: 4.958309, z: 6.925791}
-      rotation: {x: 0.09062851, y: 0.89379627, z: -0.20997299, w: 0.3857799}
-      scale: {x: 0.99999994, y: 1, z: 1}
-    - name: Light
-      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436(Clone)"
-      position: {x: -4.0762453, y: 5.903862, z: -1.005454}
-      rotation: {x: 0.52327543, y: -0.34203398, z: 0.72694236, w: 0.2841663}
-      scale: {x: 1, y: 0.99999994, z: 1}
-    - name: tripo_node_07e162d4
-      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436(Clone)"
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
-      scale: {x: 0.78, y: 1, z: 1}
-    - name: tripo_node_07e162d4.001
-      parentName: "\u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436(Clone)"
-      position: {x: 0.0067423526, y: -0.019892083, z: 0}
-      rotation: {x: -0.70680565, y: 0.020635355, z: -0.020635352, w: 0.7068056}
-      scale: {x: 0.9263731, y: 0.9263731, z: 0.9263731}
+    skeleton: []
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -119,13 +94,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
